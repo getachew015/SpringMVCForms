@@ -2,6 +2,7 @@ package com.dagim.springMVC.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,11 +13,17 @@ import com.dagim.springMVC.model.User;
 @Controller
 public class UserController {
 	
-	@RequestMapping(value="/user", method = RequestMethod.GET)
+	@RequestMapping(value="/", method= RequestMethod.GET)
+	public ModelAndView home(){
+		return new ModelAndView("user", "command", new User());
+	}
+//	@RequestMapping(value="/user", method = RequestMethod.GET)
+	@GetMapping(value="/user")
 	public ModelAndView user(){
 		return new ModelAndView("user", "command", new User());
 	}
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+//	@PostMapping(value="/addUser")
 	public String addStudent(@ModelAttribute("SpringWeb")User user, 
 			ModelMap model){
 		
